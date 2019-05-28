@@ -1,1 +1,1 @@
-require test_rescue_agent/rspec_configuration
+require 'test_rescue_agent/rspec_configuration'
