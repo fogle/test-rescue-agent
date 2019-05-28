@@ -1,6 +1,6 @@
-require 'test_rescue_client/suite_run'
-require 'test_rescue_client/file_run'
-require 'test_rescue_client/test_run'
+require 'test_rescue_agent/test_rescue_client/suite_run'
+require 'test_rescue_agent/test_rescue_client/file_run'
+require 'test_rescue_agent/test_rescue_client/test_run'
 
 module TestRescueAgent
   class TestRescueClient
