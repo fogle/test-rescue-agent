@@ -5,7 +5,7 @@ require 'test_rescue_agent/test_rescue_client/test_run'
 module TestRescueAgent
   class TestRescueClient
     def initialize(options={})
-      @endpoint = options[:endpoint] || "http://localhost:3000" # "https://test-rescue.herokuapp.com"
+      @endpoint = options[:endpoint]
       @repository_id = options[:repository_id]
       @api_key = options[:api_key]
       @secret = options[:secret]
