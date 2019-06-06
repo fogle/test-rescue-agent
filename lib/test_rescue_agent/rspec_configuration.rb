@@ -7,7 +7,7 @@ RSpec.configure do |config|
   client = nil
 
   config.before(:suite) do
-    client = TestRescueClient.new(
+    client = TestRescueAgent::TestRescueClient.new(
       repository_id: ENV["REPOSITORY_ID"],
       endpoint: ENV["TEST_RESCUE_ENDPOINT"],
       secret: ENV["TEST_RESCUE_SECRET"],
