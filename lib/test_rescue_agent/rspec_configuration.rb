@@ -1,4 +1,5 @@
 require 'test_rescue_agent/test_rescue_client'
+require 'rspec'
 
 RSpec.configure do |config|
   next unless ENV["SUITE_RUN_ID"]

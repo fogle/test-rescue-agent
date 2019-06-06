@@ -18,6 +18,7 @@ https://github.com/fogle/test-rescue-adapter/
 EOS
   s.email = "support@testrescue.com"
   s.files = Dir.glob('lib/**/*.rb')
+  s.add_dependency "rspec"
 
   s.homepage = "https://github.com/fogle/test-rescue-agent"
   s.require_paths = ["lib"]
