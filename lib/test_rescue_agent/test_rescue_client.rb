@@ -1,6 +1,7 @@
 require 'test_rescue_agent/test_rescue_client/suite_run'
 require 'test_rescue_agent/test_rescue_client/file_run'
 require 'test_rescue_agent/test_rescue_client/test_run'
+require 'httparty'
 
 module TestRescueAgent
   class TestRescueClient
@@ -11,10 +12,10 @@ module TestRescueAgent
       @secret = options[:secret]
     end
 
-    def create_suite_run
+    def create_suite_run(head_sha:)
       response = post('/suite_runs', suite_run: {
         head_branch: 'master',
-        head_sha: 'foo',
+        head_sha: head_sha,
         title: 'Collect Pull Request Title from GitHub'
       })
       TestRescueClient::SuiteRun.new(self, JSON.parse(response.body))
