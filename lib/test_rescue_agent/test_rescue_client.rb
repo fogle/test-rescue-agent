@@ -31,7 +31,7 @@ module TestRescueAgent
     end
 
     def update_file_run(suite_run_id, file_run_id, attributes)
-      response = patch("/suite_runs/#{suite_run_id}/file_runs/#{file_run_id}", file_run: attributes)
+      patch("/suite_runs/#{suite_run_id}/file_runs/#{file_run_id}", file_run: attributes)
     end
 
     def create_test_run(suite_run_id, file_run_id, attributes)
