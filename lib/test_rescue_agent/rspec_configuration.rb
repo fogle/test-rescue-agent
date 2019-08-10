@@ -1,4 +1,4 @@
-return unless ENV["SUITE_RUN_ID"] && ENV["TYPE"] = "rspec"
+return unless ENV["SUITE_RUN_ID"] && ENV["TYPE"] == "rspec"
 
 require 'test_rescue_agent/test_rescue_client'
 require 'rspec'
