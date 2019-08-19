@@ -26,6 +26,12 @@ module TestRescueAgent
       TestRescueClient::FileRun.new(self, JSON.parse(response.body))
     end
 
+    def claim_file_run(suite_run_id, container_id)
+      response = post("/suite_runs/#{suite_run_id}/file_runs/claim", container_id: container_id)
+      json = JSON.parse(response.body)
+      TestRescueClient::FileRun.new(self, json) if json
+    end
+
     def complete_file_run(suite_run_id, file_run_id)
       update_file_run(suite_run_id, file_run_id, {completed_at: Time.now.iso8601})
     end

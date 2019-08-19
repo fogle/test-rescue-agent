@@ -1,4 +1,4 @@
-return unless ENV["SUITE_RUN_ID"] && ENV["TYPE"] == "cucumber"
+return unless ENV["SUITE_RUN_ID"] && ENV["TEST_RESCUE_TYPE"] == "cucumber"
 
 require 'test_rescue_agent/test_rescue_client'
 require 'cucumber'
