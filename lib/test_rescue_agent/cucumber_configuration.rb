@@ -31,7 +31,7 @@ After do |scenario|
   client.create_test_run(
     ENV["SUITE_RUN_ID"],
     ENV["FILE_RUN_ID"],
-    description: scenario.title,
+    description: scenario.name,
     location: scenario.location.to_s,
     result: scenario.passed?,
     failure_details: failure_details,
