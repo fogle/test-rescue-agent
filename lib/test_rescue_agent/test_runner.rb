@@ -10,6 +10,7 @@ module TestRescueAgent
         api_key: ENV["TEST_RESCUE_API_KEY"]
       )
       while file_run = client.claim_file_run(ENV["SUITE_RUN_ID"], ENV["CONTAINER_ID"])
+        puts "running \"#{file_run.command}\""
         `#{file_run.command}`
       end
     end
