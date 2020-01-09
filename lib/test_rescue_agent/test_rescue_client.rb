@@ -12,10 +12,10 @@ module TestRescueAgent
       @secret = options[:secret]
     end
 
-    def create_suite_run(head_sha:)
+    def create_suite_run(sha:)
       response = post('/suite_runs', suite_run: {
         head_branch: 'master',
-        head_sha: head_sha,
+        sha: sha,
         title: 'Collect Pull Request Title from GitHub'
       })
       TestRescueClient::SuiteRun.new(self, JSON.parse(response.body))
