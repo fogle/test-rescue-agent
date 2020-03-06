@@ -5,6 +5,8 @@ require 'rspec'
 
 RSpec.configure do |config|
   client = nil
+  config.color = true
+  config.tty = true
 
   config.before(:suite) do
     client = TestRescueAgent::TestRescueClient.new(
