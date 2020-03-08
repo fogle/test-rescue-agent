@@ -2,6 +2,10 @@ require 'test_rescue_agent/test_rescue_client/suite_run'
 require 'test_rescue_agent/test_rescue_client/file_run'
 require 'test_rescue_agent/test_rescue_client/test_run'
 require 'httparty'
+begin
+  gem 'webmock'
+rescue Gem::LoadError
+end
 
 module TestRescueAgent
   class TestRescueClient
@@ -56,12 +60,27 @@ module TestRescueAgent
       }
     end
 
+    def handle_webmock
+      instance = WebMock::Config.instance
+      if instance.allow.respond_to?(:include?)
+        instance.allow.push('www.testrescue.com') unless instance.allow.include?('www.testrescue.com')
+      else
+        WebMock::Config.instance.allow = [WebMock::Config.instance.allow, 'www.testrescue.com']
+      end
+    rescue NameError
+      # no problem. webmock not being resident means this code wasn't needed anyway
+    rescue
+      # TODO: report this to sentry, but still try to move on
+    end
+
     def post(path, body)
+      handle_webmock
       url = "#{@endpoint}/repositories/#{@repository_id}#{path}"
       HTTParty.post(url, body: body.to_json, headers: headers)
     end
 
     def patch(path, body)
+      handle_webmock
       url = "#{@endpoint}/repositories/#{@repository_id}#{path}"
       HTTParty.patch(url, body: body.to_json, headers: headers)
     end
