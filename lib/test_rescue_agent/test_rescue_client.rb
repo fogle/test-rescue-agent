@@ -62,7 +62,9 @@ module TestRescueAgent
 
     def handle_webmock
       instance = WebMock::Config.instance
-      if instance.allow.respond_to?(:include?)
+      if instance.allow.nil?
+        instance.allow = 'www.testrescue.com'
+      elsif instance.allow.respond_to?(:include?)
         instance.allow.push('www.testrescue.com') unless instance.allow.include?('www.testrescue.com')
       else
         WebMock::Config.instance.allow = [WebMock::Config.instance.allow, 'www.testrescue.com']
