@@ -3,8 +3,8 @@ require 'test_rescue_agent/test_rescue_client/file_run'
 require 'test_rescue_agent/test_rescue_client/test_run'
 require 'httparty'
 begin
-  gem 'webmock'
-rescue Gem::LoadError
+  require 'webmock'
+rescue LoadError
 end
 
 module TestRescueAgent
