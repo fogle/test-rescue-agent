@@ -1,5 +1,6 @@
 require 'test_rescue_agent/test_rescue_client/suite_run'
 require 'test_rescue_agent/test_rescue_client/file_run'
+require 'test_rescue_agent/test_rescue_client/file_run_exception'
 require 'test_rescue_agent/test_rescue_client/test_run'
 require 'httparty'
 begin
@@ -28,6 +29,11 @@ module TestRescueAgent
     def create_file_run(suite_run_id, attributes)
       response = post("/suite_runs/#{suite_run_id}/file_runs", file_run: attributes)
       TestRescueClient::FileRun.new(self, JSON.parse(response.body))
+    end
+
+    def create_file_run_exception(suite_run_id, file_run_id, attributes)
+      response = post("/suite_runs/#{suite_run_id}/file_runs/#{file_run_id}/exceptions", file_run_exception: attributes)
+      TestRescueClient::FileRunException.new(self, JSON.parse(response.body))
     end
 
     def claim_file_run(suite_run_id, container_id)
